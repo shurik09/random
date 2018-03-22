@@ -1,0 +1,77 @@
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+int wap=0;
+
+int partition(vector<int> &arr, int left, int right) {
+	int piv = right;
+	int l = left;
+	int r = right;
+
+	while (l<r) {
+
+		while (arr[piv] < arr[r])
+			r--;
+		while (arr[piv] > arr[l])
+			l++;
+
+		if (arr[piv] > arr[r]) {
+			int temp = arr[piv];
+			arr[piv] = arr[r];
+			arr[r] = temp;
+			piv = r;
+			l++;
+			wap++;
+		}
+
+		if (arr[piv] < arr[l]) {
+			int temp = arr[piv];
+			arr[piv] = arr[l];
+			arr[l] = temp;
+			piv = l;
+			r--;
+			wap++;
+		}
+
+	}
+
+	for (int i = 0; i < arr.size(); i++)
+		cout << arr[i] << " ";
+	cout << endl;
+	return piv;
+}
+
+void qs(vector<int> &arr, int left, int right) {
+
+	if (left < right){
+		int pivot = partition(arr, left, right);
+		//if (left < pivot-2)
+			qs(arr, left, pivot-1);
+		//if (right > pivot+2)
+			qs(arr, pivot+1, right);
+	}
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+
+	vector <int> arr(n);
+	for (int i = 0; i < (int)n; ++i) {
+		cin >> arr[i];
+	}
+	cout << endl;
+
+	qs(arr, 0, n-1);
+
+	//for (int i = 0; i < n; i++)
+	//	cout << arr[i] << " ";
+
+	cout << "wap: " << wap;
+
+	return 0;
+}

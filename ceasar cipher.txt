@@ -1,0 +1,41 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+string caesarCipher(string s, int k) {
+	string empty = "";
+	int asc;
+	for (int i = 0; i < s.size(); i++){
+		k %= 26;
+		asc = int(s[i]);
+		if (65 <= asc && asc <= 90) {
+			asc += k;
+			if (asc > 90) {
+				int d = asc - 90;
+				asc = 64 + d;
+			}
+		}
+		else if (97 <= asc && asc <= 122) {
+			asc += k;
+			if (asc > 122) {
+				int d = asc - 122;
+				asc = 96 + d;
+			}
+		}
+		empty += char(asc);
+	}
+	return empty;
+}
+
+int main() {
+	int n;
+	cin >> n;
+	string s;
+	cin >> s;
+	int k;
+	cin >> k;
+	string result = caesarCipher(s, k);
+	cout << result << endl;
+	return 0;
+}

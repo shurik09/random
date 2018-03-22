@@ -1,0 +1,38 @@
+#include "stdafx.h"
+#include <string>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+vector<char> low = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+vector<char> cap = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+string pangrams(string s) {
+	string ret;
+	int count = 26;
+	for (int i = 0; i < s.size(); i++)
+	{
+		for (int j = 0; j < count; j++)
+		{
+			if (s[i] == low[j] || s[i] == cap[j])
+			{
+				low.erase(low.begin() + j);
+				cap.erase(cap.begin() + j);
+				count--;
+			}
+		}
+	}
+	if (low.empty())
+		ret = "pangram";
+	else ret = "not pangram";
+	return ret;
+}
+
+int main() {
+
+	string s;
+	getline(cin, s);
+	string result = pangrams(s);
+	cout << result << endl;
+	return 0;
+}

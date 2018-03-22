@@ -1,0 +1,37 @@
+// vector::push_back
+#include "stdafx.h"
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+	int n, q;
+	cin >> n >> q;
+	vector< vector<int> > a;
+	vector<int> b;
+	
+	for (int i = 0; i < n; i++)
+	{
+		int k;
+		cin >> k;
+		a.push_back(vector<int>());
+		for (int j = 0; j < k; j++) 
+		{
+			int c;
+			cin >> c;
+			a[i].push_back(c);
+		}
+	}
+
+	for (int i = 0; i < q; i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		b.push_back(a[x][y]);
+	}
+	for (int i = 0; i < b.size(); i++)
+		cout << b[i] << endl;
+
+	return 0;
+}

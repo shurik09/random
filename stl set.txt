@@ -1,0 +1,47 @@
+#include "stdafx.h"
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <algorithm>
+using namespace std;
+
+#define FOR(n) for(int i=0; i<n; i++)
+
+int main() {	
+	int n;
+	cin >> n;
+
+	set<int> s;
+	vector<int> txt;
+	set<int>::iterator it;
+	int x, y;
+	FOR(n)
+	{
+		cin >> y >> x;
+		if (y == 1)
+		{
+			s.insert(x);
+		}
+		else if (y == 2) 
+		{
+			s.erase(x);
+		}
+		else if (y == 3) 
+		{
+			it = s.find(x);
+			if (it != s.end())
+				txt.push_back(1);
+			else txt.push_back(0);
+		}
+	}
+	FOR(txt.size())
+	{
+		if (txt[i] == 1)
+			cout << "YES" << endl;
+		else cout << "NO" << endl;
+	}
+
+	return 0;
+}
